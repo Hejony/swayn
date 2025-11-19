@@ -108,6 +108,7 @@ const Result: React.FC<ResultProps> = ({ resultType, userName, onRetry, onGoHome
                     }
                     
                     // 3. Fix container width to prevent wrapping text differently than screen
+                    // Use fixed width for the captured image to ensure consistency
                     target.style.width = '360px';
                     target.style.maxWidth = '360px';
                     target.style.margin = '0';
@@ -162,14 +163,15 @@ const Result: React.FC<ResultProps> = ({ resultType, userName, onRetry, onGoHome
       <main className="relative z-10 p-4 sm:p-6 pt-16 pb-24 lg:pb-8 flex flex-col items-center">
         
         {/* Capture Area Wrapper */}
+        {/* Fixed: changed w-full to w-auto and added max-w constraint to prevent cutoff on small screens */}
         <div 
             ref={captureRef} 
             data-capture-target
-            className="w-full max-w-[360px] bg-white p-3 rounded-[2.5rem] shadow-lg relative"
+            className="w-auto max-w-[90%] md:max-w-[360px] bg-white p-3 rounded-[2.5rem] shadow-lg relative mx-auto"
         >
             {/* Inner Blue Card with Dotted Border - Darkened gradient start for better white text contrast */}
             {/* Increased pt from 6 to 11 to give more breathing room at the top */}
-            <div className="bg-gradient-to-b from-[#5B8DEF] to-[#Dbeafe] rounded-[2rem] pt-11 pb-8 px-4 relative overflow-hidden border-[4px] border-dashed border-white/60">
+            <div className="bg-gradient-to-b from-[#5B8DEF] to-[#Dbeafe] rounded-[2rem] pt-11 pb-8 px-3 md:px-4 relative overflow-hidden border-[4px] border-dashed border-white/60">
                 
                 {/* Section 1: Header & Title */}
                 <div className="opacity-0 animate-fade-in">
@@ -183,7 +185,7 @@ const Result: React.FC<ResultProps> = ({ resultType, userName, onRetry, onGoHome
                     {/* Title with Wings */}
                     <div className="flex items-center justify-center gap-0.5 mb-1 relative z-10 -ml-1">
                         <WingIcon className="w-8 h-8 text-white/95 transform -scale-x-100 drop-shadow-md mb-1" />
-                        <h1 className="text-[1.75rem] leading-none font-black text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.2)] tracking-tighter whitespace-nowrap font-pretendard">
+                        <h1 className="text-[1.6rem] sm:text-[1.75rem] leading-none font-black text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.2)] tracking-tighter whitespace-nowrap font-pretendard">
                             {result.title}
                         </h1>
                         <WingIcon className="w-8 h-8 text-white/95 drop-shadow-md mb-1" />
@@ -249,7 +251,7 @@ const Result: React.FC<ResultProps> = ({ resultType, userName, onRetry, onGoHome
                                  {[1, 2, 3, 4, 5].map((star) => (
                                      <StarIcon 
                                         key={star} 
-                                        className="w-5 h-5 filter drop-shadow-sm" 
+                                        className="w-4 h-4 sm:w-5 sm:h-5 filter drop-shadow-sm" 
                                         filled={star <= result.sensitivity}
                                      />
                                  ))}

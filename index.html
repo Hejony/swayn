@@ -2,7 +2,7 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Sway'n 졸업전시회 초대장</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
@@ -23,8 +23,37 @@
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
       }
+      
+      /* Loading Fallback Styles */
+      #root:empty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #F2F4F6;
+      }
+      #root:empty::after {
+        content: "Loading Sway'n...";
+        color: #0062FF;
+        font-weight: bold;
+        font-family: sans-serif;
+        animation: pulse 1.5s infinite;
+      }
+      @keyframes pulse {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
+      }
     </style>
     <script>
+      // Suppress Tailwind CDN warning in console
+      console.warn = (function(w) {
+          return function() {
+              if (arguments[0].indexOf('cdn.tailwindcss.com') !== -1) return;
+              w.apply(console, arguments);
+          };
+      })(console.warn);
+
       tailwind.config = {
         theme: {
           extend: {
@@ -155,7 +184,7 @@
 </head>
   <body class="font-pretendard bg-white">
     <div id="root"></div>
-    <!-- Fixed: Changed absolute path to relative path to support GitHub Pages subdirectory deployment -->
+    <!-- Explicitly use ./index.tsx to avoid root path issues on GitHub Pages -->
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>
