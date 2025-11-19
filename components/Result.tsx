@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from 'react';
 import { SleepType } from '../types';
 import { RESULTS_DATA } from '../constants';
@@ -322,9 +321,11 @@ const Result: React.FC<ResultProps> = ({ resultType, userName, onRetry, onGoHome
                     </div>
                 </div>
 
-                {/* Brand Signature Footer */}
-                <div className="mt-7 mb-1 flex items-center justify-center opacity-0 animate-fade-in-delay-2">
-                     <span className="font-vollkorn text-white/60 text-sm font-bold tracking-[0.3em] uppercase drop-shadow-sm">Sway'n</span>
+                {/* Brand Signature Footer - Enhanced for better closure */}
+                <div className="mt-8 mb-2 flex flex-col items-center justify-center opacity-0 animate-fade-in-delay-2 gap-1">
+                     <div className="w-px h-3 bg-white/40 mb-1"></div>
+                     <span className="font-vollkorn text-white/70 text-[10px] font-medium tracking-widest uppercase">Night Ritual</span>
+                     <span className="font-vollkorn text-white/90 text-sm font-bold tracking-[0.3em] uppercase drop-shadow-sm">Sway'n</span>
                 </div>
 
             </div>
